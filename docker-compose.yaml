@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./bmxui
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./bmxapi
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+
+  # for local development
+# version: '3.7'
+# services:
+#   bmxui:
+#     build:
+#       context: ./bmxui
+#       dockerfile: Dockerfile
+#       target: 'develop-stage'
+#     ports:
+#     - '8080:8080'
+#     volumes:
+#     - '.:/app'
+#     command: /bin/sh -c "yarn && quasar dev"
